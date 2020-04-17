@@ -1,0 +1,7 @@
+[MESSAGES CONTROL]
+disable=line-too-long,locally-disabled
+
+[REPORTS]
+output-format=text
+files-output=no
+reports=no
