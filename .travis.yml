@@ -1,0 +1,9 @@
+language: python
+
+dist: bionic
+
+before_install:
+  - sudo apt-get update -qq
+  - sudo apt-get install -y pyflakes3 pycodestyle pydocstyle codespell pylint3
+
+script: make test
