@@ -6,7 +6,7 @@ clean:
 
 pyflakes:
 	@echo Running pyflakes...
-	@pyflakes3 */*.py
+	@pyflakes3 pad */*.py
 
 pydocstyle:
 	@echo Running pydocstyle...
@@ -14,15 +14,15 @@ pydocstyle:
 
 pycodestyle:
 	@echo Running pycodestyle...
-	@pycodestyle --ignore=E501 */*.py
+	@pycodestyle --ignore=E501 pad */*.py
 
 codespell:
 	@echo Running codespell...
-	@codespell */*.py
+	@codespell pad */*.py
 
 lint:
 	@echo Running pylint...
-	@pylint --rcfile=.pylintrc */*.py
+	@pylint3 --rcfile=.pylintrc pad */*.py
 
 unittest:
 	@echo Running unit tests...

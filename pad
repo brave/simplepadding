@@ -1,0 +1,71 @@
+#!/usr/bin/env python3
+"""
+Tool to add and remove simple padding to files up to 4GB.
+
+Copyright 2020 Brave Software Inc.
+
+This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this file,
+You can obtain one at https://mozilla.org/MPL/2.0/.
+"""
+
+import argparse
+import sys
+
+from simplepadding import decode, encode
+
+
+VERSION = "1.0"
+
+
+def open_file(filename, is_input):
+    """Open the given filename or return stdin/sdtout."""
+    if is_input:
+        if filename == '-':
+            return sys.stdin.buffer
+        return open(filename, "rb")
+
+    if filename == '':
+        return sys.stdout.buffer
+    return open(filename, "wb")
+
+
+def decode_file(input_file, output_file):
+    """Unpad the input file and output it."""
+    output_file.write(decode(input_file.read()))
+    return 0
+
+
+def encode_file(input_file, output_file, target_length):
+    """Pad the input file and output it."""
+    output_file.write(encode(input_file.read(), target_length))
+    return 0
+
+
+def main():  # pylint: disable=missing-docstring
+    parser = argparse.ArgumentParser(
+        description="Add and remove simple padding from files.")
+    parser.add_argument('input_file', type=str, nargs='?',
+                        default='-', help="input file (default: STDIN)")
+    parser.add_argument('-o', '--output', dest='output_file', type=str, nargs='?',
+                        default='', help="output file (default: STDOUT)")
+    parser.add_argument('-l', '--length', dest='length', type=int,
+                        default=0, help="final length of file after padding")
+    parser.add_argument('-d', '--decode', const='decode', action='store_const',
+                        help="remove padding instead of adding it.")
+    parser.add_argument('-V', '--version', action='version',
+                        version='pad %s' % VERSION)
+    args = parser.parse_args()
+
+    if not args.decode and args.length <= 0:
+        print('Length is required for padding', file=sys.stderr)
+        return 1
+
+    with open_file(args.input_file, True) as input_file:
+        with open_file(args.output_file, False) as output_file:
+            if args.decode:
+                return decode_file(input_file, output_file)
+            return encode_file(input_file, output_file, args.length)
+
+
+sys.exit(main())
