@@ -53,3 +53,7 @@ class SimplePaddingDecoding(unittest.TestCase):
             decode(b'\x00\x00\x00\x04ABCDPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP'),
             b'ABCD'
         )
+        self.assertEqual(
+            decode(b'\x00\x00\x00\x01PP'),
+            b'P'
+        )
