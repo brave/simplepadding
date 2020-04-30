@@ -20,10 +20,14 @@ class SimplePaddingDecoding(unittest.TestCase):
         with self.assertRaises(ValueError):
             decode(b'')
         with self.assertRaises(ValueError):
+            decode(b'\xFF')
+        with self.assertRaises(ValueError):
             decode(b'\x00\x00\x00')
 
     def test_file_too_small(self):
         """Use a file shorter than the length header."""
+        with self.assertRaises(ValueError):
+            decode(b'\x00\x00\x00\x01')
         with self.assertRaises(ValueError):
             decode(b'\x00\x00\x00\x04ABC')
         with self.assertRaises(ValueError):
