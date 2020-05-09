@@ -52,12 +52,27 @@ class SimplePaddingDecoding(unittest.TestCase):
         )
 
     def test_payload_with_padding(self):
-        """Use a payload which isn padded."""
+        """Use a payload which is padded."""
         self.assertEqual(
             decode(b'\x00\x00\x00\x04ABCDPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP'),
             b'ABCD'
         )
         self.assertEqual(
+            decode(b'\x00\x00\x00\x05AB\x00CDPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP'),
+            b'AB\x00CD'
+        )
+        self.assertEqual(
             decode(b'\x00\x00\x00\x01PP'),
+            b'P'
+        )
+
+    def test_payload_with_weird_padding(self):
+        """Use a payload which is padded with non-standard characters."""
+        self.assertEqual(
+            decode(b'\x00\x00\x00\x04ABCDABCD'),
+            b'ABCD'
+        )
+        self.assertEqual(
+            decode(b'\x00\x00\x00\x01P\x00\x00\x00'),
             b'P'
         )
