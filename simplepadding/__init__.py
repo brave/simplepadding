@@ -39,8 +39,6 @@ def encode(payload, target_length):
 
     length_header = struct.pack('!L', len(payload))
 
-    padding_footer = b''
-    while len(padding_footer) < (target_length - no_padding_length):
-        padding_footer += b'P'
+    padding_footer = b'P' * (target_length - no_padding_length)
 
     return length_header + payload + padding_footer
