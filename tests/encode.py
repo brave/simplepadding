@@ -72,7 +72,7 @@ class SimplePaddingEncoding(unittest.TestCase):
             b'\x00\x00\x00\x09Fran\xc3\xa7oisPP'
         )
         self.assertEqual(
-            encode('François'.encode('utf-8'), 15),  # pylint: disable=invalid-encoded-data
+            encode('François'.encode('utf-8'), 15),
             b'\x00\x00\x00\x09Fran\xc3\xa7oisPP'
         )
 
