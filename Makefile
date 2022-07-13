@@ -22,7 +22,7 @@ codespell:
 
 lint:
 	@echo Running pylint...
-	@pylint3 --rcfile=.pylintrc pad */*.py
+	@pylint --rcfile=.pylintrc pad */*.py
 
 unittest:
 	@echo Running unit tests...
