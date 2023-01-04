@@ -18,7 +18,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Install linters
-        run: sudo apt-get install -y pyflakes3 pycodestyle pydocstyle codespell pylint3
+        run: sudo apt-get install -y pyflakes3 pycodestyle pydocstyle codespell pylint
 
       - name: Run tests
         run: make test
