@@ -54,7 +54,7 @@ def main():  # pylint: disable=missing-docstring
     parser.add_argument('-d', '--decode', const='decode', action='store_const',
                         help="remove padding instead of adding it.")
     parser.add_argument('-V', '--version', action='version',
-                        version='pad %s' % VERSION)
+                        version=f'pad {VERSION}')
     args = parser.parse_args()
 
     if not args.decode and args.length <= 0:
