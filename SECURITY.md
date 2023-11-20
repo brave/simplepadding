@@ -4,6 +4,6 @@
 
 The latest version on the `master` branch.
 
-## Reporting a Vulnerability
+## Privately reporting a security vulnerability
 
 See https://hackerone.com/brave for details.
