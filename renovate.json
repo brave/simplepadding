@@ -1,6 +1,35 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "labels": [
+    "dependencies",
+    "renovate"
+  ],
+  "schedule": [
+    "before 3am on Monday"
+  ],
   "extends": [
     "local>brave/renovate-config"
+  ],
+  "packageRules": [
+    {
+      "matchPackageNames": ["actions/upload-artifact"],
+      "extends": ["default:automergeMinor"],
+      "enabled": true
+    },
+    {
+      "matchPackageNames": ["github/codeql-action"],
+      "extends": ["default:automergeMinor"],
+      "enabled": true
+    },
+    {
+      "matchPackageNames": ["actions/checkout"],
+      "extends": ["default:automergeMinor"],
+      "enabled": true
+    },
+    {
+      "matchPackageNames": ["ossf/scorecard-action"],
+      "extends": ["default:automergeMinor"],
+      "enabled": true
+    }
   ]
 }
