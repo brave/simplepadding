@@ -1,3 +1,5 @@
+[![0 dependencies!](https://0dependencies.dev/0dependencies.svg)](https://0dependencies.dev)
+
 # simplepadding
 
 Module used to add and remove simple padding to binary files up to 4GB.
